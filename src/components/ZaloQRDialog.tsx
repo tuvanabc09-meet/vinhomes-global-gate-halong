@@ -12,8 +12,14 @@ export const useZaloQR = () => useContext(ZaloQRContext);
 
 export const ZaloQRProvider = ({ children }: { children: ReactNode }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const handleOpen = () => {
+    // Mở chat Zalo trực tiếp ở tab/app mới
+    window.open(ZALO_URL, "_blank", "noopener,noreferrer");
+    // Đồng thời hiện popup QR để khách quét nếu muốn
+    setIsOpen(true);
+  };
   return (
-    <ZaloQRContext.Provider value={{ open: () => setIsOpen(true) }}>
+    <ZaloQRContext.Provider value={{ open: handleOpen }}>
       {children}
       {isOpen && (
         <div
