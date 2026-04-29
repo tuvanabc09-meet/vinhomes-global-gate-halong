@@ -843,6 +843,13 @@ const FinalCTA = () => (
         <a href={ZALO_URL} className="h-16 rounded-full bg-[#0068FF] text-white font-black text-lg flex items-center justify-center gap-2 hover:scale-105 transition-bounce">
           <MessageCircle className="w-6 h-6" /> NHẮN ZALO NGAY
         </a>
+        <div className="bg-white rounded-2xl p-4 flex items-center gap-4 text-left">
+          <SmartImage slotId="qr_zalo" alt="QR Zalo" className="w-24 h-24 rounded-lg object-contain bg-white flex-shrink-0" />
+          <div className="text-primary-deep">
+            <p className="font-black text-sm">Quét QR — Liên hệ Zalo nhanh</p>
+            <p className="text-xs text-primary-deep/70 mt-1">Ngọc Mai Land Hạ Long</p>
+          </div>
+        </div>
       </div>
 
       <div className="mt-10 max-w-lg mx-auto bg-black/30 backdrop-blur-md rounded-2xl p-6 text-left border border-white/20">
@@ -886,17 +893,24 @@ const Footer = ({ scrollTo }: { scrollTo: (id: string) => void }) => (
 
       <div>
         <h4 className="font-bold text-secondary mb-4">Theo dõi chúng tôi</h4>
-        <div className="flex gap-3">
+        <div className="flex gap-3 mb-4">
           {[
             { url: FB_URL, i: <Facebook className="w-5 h-5" />, c: "bg-[#1877F2]" },
             { url: YT_URL, i: <Youtube className="w-5 h-5" />, c: "bg-[#FF0000]" },
             { url: ZALO_URL, i: <MessageCircle className="w-5 h-5" />, c: "bg-[#0068FF]" },
             { url: TT_URL, i: <span className="font-black text-sm">TT</span>, c: "bg-black" },
           ].map((s, i) => (
-            <a key={i} href={s.url} className={`w-11 h-11 rounded-full ${s.c} flex items-center justify-center hover:scale-110 transition-bounce`}>
+            <a key={i} href={s.url} target="_blank" rel="noopener" className={`w-11 h-11 rounded-full ${s.c} flex items-center justify-center hover:scale-110 transition-bounce`}>
               {s.i}
             </a>
           ))}
+        </div>
+        <div className="bg-white rounded-xl p-3 inline-flex items-center gap-3">
+          <SmartImage slotId="qr_zalo" alt="QR Zalo" className="w-20 h-20 rounded-md object-contain" />
+          <div className="text-primary-deep text-xs">
+            <p className="font-bold">Quét QR Zalo</p>
+            <p className="opacity-70">Liên hệ nhanh 24/7</p>
+          </div>
         </div>
       </div>
     </div>
