@@ -823,7 +823,9 @@ const FAQ = () => {
 };
 
 /* ----------------------------- FINAL CTA ----------------------------- */
-const FinalCTA = () => (
+const FinalCTA = () => {
+  const { open: zaloOpen } = useZaloQR();
+  return (
   <section className="py-24 sm:py-32 gradient-cta text-white relative overflow-hidden">
     <div className="absolute inset-0 opacity-30" style={{ backgroundImage: "radial-gradient(circle at 30% 20%, hsl(var(--secondary)) 0%, transparent 40%), radial-gradient(circle at 70% 80%, hsl(var(--highlight)) 0%, transparent 40%)" }} />
     <div className="container relative text-center max-w-3xl">
@@ -843,16 +845,10 @@ const FinalCTA = () => (
         <a href={`tel:${PHONE}`} className="h-16 rounded-full bg-white text-cta font-black text-lg flex items-center justify-center gap-2 shadow-cta hover:scale-105 transition-bounce">
           <Phone className="w-6 h-6" /> GỌI NGAY — {PHONE_DISPLAY}
         </a>
-        <a href={ZALO_URL} className="h-16 rounded-full bg-[#0068FF] text-white font-black text-lg flex items-center justify-center gap-2 hover:scale-105 transition-bounce">
-          <MessageCircle className="w-6 h-6" /> NHẮN ZALO NGAY
-        </a>
-        <div className="bg-white rounded-2xl p-4 flex items-center gap-4 text-left">
-          <SmartImage slotId="qr_zalo" alt="QR Zalo" className="w-24 h-24 rounded-lg object-contain bg-white flex-shrink-0" />
-          <div className="text-primary-deep">
-            <p className="font-black text-sm">Quét QR — Liên hệ Zalo nhanh</p>
-            <p className="text-xs text-primary-deep/70 mt-1">Ngọc Mai Land Hạ Long</p>
-          </div>
-        </div>
+        <button onClick={zaloOpen} className="h-16 rounded-full bg-[#0068FF] text-white font-black text-lg flex items-center justify-center gap-2 hover:scale-105 transition-bounce">
+          <MessageCircle className="w-6 h-6" /> NHẮN ZALO — QUÉT QR NGAY
+        </button>
+        <p className="text-xs text-white/80">💡 Bấm "NHẮN ZALO" để hiện mã QR — quét bằng app Zalo trên điện thoại</p>
       </div>
 
       <div className="mt-10 max-w-lg mx-auto bg-black/30 backdrop-blur-md rounded-2xl p-6 text-left border border-white/20">
@@ -865,7 +861,8 @@ const FinalCTA = () => (
       </div>
     </div>
   </section>
-);
+  );
+};
 
 /* ----------------------------- FOOTER ----------------------------- */
 const Footer = ({ scrollTo }: { scrollTo: (id: string) => void }) => (
