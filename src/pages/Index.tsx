@@ -10,6 +10,7 @@ import { SmartImage } from "@/components/SmartImage";
 import { AdminPanel } from "@/components/AdminPanel";
 import { Countdown } from "@/components/Countdown";
 import { Lightbox } from "@/components/Lightbox";
+import { ZaloQRProvider, useZaloQR } from "@/components/ZaloQRDialog";
 
 const PHONE = "0962891111";
 const PHONE_DISPLAY = "0962 891 111";
