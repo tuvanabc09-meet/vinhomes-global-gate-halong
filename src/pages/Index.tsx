@@ -106,9 +106,9 @@ const IndexInner = () => {
             <a href={`tel:${PHONE}`} className="mt-6 inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full gradient-cta text-white font-bold shadow-cta">
               <Phone className="w-5 h-5" /> GỌI NGAY: {PHONE_DISPLAY}
             </a>
-            <a href={ZALO_URL} className="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full bg-[#0068FF] text-white font-bold">
+            <button onClick={() => { setMobileNav(false); zaloOpen(); }} className="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full bg-[#0068FF] text-white font-bold">
               <MessageCircle className="w-5 h-5" /> NHẮN ZALO
-            </a>
+            </button>
           </nav>
         </div>
       )}
@@ -131,22 +131,22 @@ const IndexInner = () => {
       </main>
 
       {/* FLOATING DESKTOP ZALO */}
-      <a
-        href={ZALO_URL}
+      <button
+        onClick={zaloOpen}
         className="hidden md:flex fixed bottom-6 right-6 z-40 w-16 h-16 rounded-full bg-[#0068FF] text-white items-center justify-center shadow-cta hover:scale-110 transition-bounce float-anim"
         aria-label="Nhắn Zalo"
       >
         <MessageCircle className="w-7 h-7" />
-      </a>
+      </button>
 
       {/* MOBILE FLOATING BAR */}
       <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 grid grid-cols-3 shadow-card">
         <a href={`tel:${PHONE}`} className="flex flex-col items-center justify-center py-3 bg-cta text-white font-semibold text-xs gap-1">
           <Phone className="w-5 h-5" /> Gọi ngay
         </a>
-        <a href={ZALO_URL} className="flex flex-col items-center justify-center py-3 bg-[#0068FF] text-white font-semibold text-xs gap-1">
+        <button onClick={zaloOpen} className="flex flex-col items-center justify-center py-3 bg-[#0068FF] text-white font-semibold text-xs gap-1">
           <MessageCircle className="w-5 h-5" /> Zalo
-        </a>
+        </button>
         <a href={FB_URL} className="flex flex-col items-center justify-center py-3 bg-[#1877F2] text-white font-semibold text-xs gap-1">
           <Facebook className="w-5 h-5" /> Nhắn FB
         </a>
