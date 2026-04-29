@@ -10,6 +10,7 @@ import { SmartImage } from "@/components/SmartImage";
 import { AdminPanel } from "@/components/AdminPanel";
 import { Countdown } from "@/components/Countdown";
 import { Lightbox } from "@/components/Lightbox";
+import { ZaloQRProvider, useZaloQR } from "@/components/ZaloQRDialog";
 
 const PHONE = "0962891111";
 const PHONE_DISPLAY = "0962 891 111";
@@ -27,7 +28,14 @@ const NAV = [
   { id: "lienhe", label: "Liên hệ" },
 ];
 
-const Index = () => {
+const Index = () => (
+  <ZaloQRProvider>
+    <IndexInner />
+  </ZaloQRProvider>
+);
+
+const IndexInner = () => {
+  const { open: zaloOpen } = useZaloQR();
   const [adminOpen, setAdminOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [mobileNav, setMobileNav] = useState(false);
@@ -98,9 +106,9 @@ const Index = () => {
             <a href={`tel:${PHONE}`} className="mt-6 inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full gradient-cta text-white font-bold shadow-cta">
               <Phone className="w-5 h-5" /> GỌI NGAY: {PHONE_DISPLAY}
             </a>
-            <a href={ZALO_URL} className="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full bg-[#0068FF] text-white font-bold">
+            <button onClick={() => { setMobileNav(false); zaloOpen(); }} className="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full bg-[#0068FF] text-white font-bold">
               <MessageCircle className="w-5 h-5" /> NHẮN ZALO
-            </a>
+            </button>
           </nav>
         </div>
       )}
@@ -123,22 +131,22 @@ const Index = () => {
       </main>
 
       {/* FLOATING DESKTOP ZALO */}
-      <a
-        href={ZALO_URL}
+      <button
+        onClick={zaloOpen}
         className="hidden md:flex fixed bottom-6 right-6 z-40 w-16 h-16 rounded-full bg-[#0068FF] text-white items-center justify-center shadow-cta hover:scale-110 transition-bounce float-anim"
         aria-label="Nhắn Zalo"
       >
         <MessageCircle className="w-7 h-7" />
-      </a>
+      </button>
 
       {/* MOBILE FLOATING BAR */}
       <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 grid grid-cols-3 shadow-card">
         <a href={`tel:${PHONE}`} className="flex flex-col items-center justify-center py-3 bg-cta text-white font-semibold text-xs gap-1">
           <Phone className="w-5 h-5" /> Gọi ngay
         </a>
-        <a href={ZALO_URL} className="flex flex-col items-center justify-center py-3 bg-[#0068FF] text-white font-semibold text-xs gap-1">
+        <button onClick={zaloOpen} className="flex flex-col items-center justify-center py-3 bg-[#0068FF] text-white font-semibold text-xs gap-1">
           <MessageCircle className="w-5 h-5" /> Zalo
-        </a>
+        </button>
         <a href={FB_URL} className="flex flex-col items-center justify-center py-3 bg-[#1877F2] text-white font-semibold text-xs gap-1">
           <Facebook className="w-5 h-5" /> Nhắn FB
         </a>
@@ -435,6 +443,7 @@ const TOWNHOUSES = [
 
 const Products = () => {
   const [tab, setTab] = useState<"villa" | "townhouse">("villa");
+  const { open: zaloOpen } = useZaloQR();
   return (
     <section id="sanpham" className="py-20 sm:py-28 bg-background">
       <div className="container">
@@ -481,9 +490,9 @@ const Products = () => {
                 </div>
                 <h3 className="font-bold text-lg text-primary-deep">{v.t}</h3>
                 <p className="text-muted-foreground text-sm mb-4">{v.d}</p>
-                <a href={ZALO_URL} className="inline-flex items-center gap-2 text-sm font-semibold text-cta hover:text-cta-deep">
+                <button onClick={zaloOpen} className="inline-flex items-center gap-2 text-sm font-semibold text-cta hover:text-cta-deep">
                   <MessageCircle className="w-4 h-4" /> Nhận báo giá
-                </a>
+                </button>
               </div>
             ))}
           </div>
@@ -636,6 +645,7 @@ type FormData = {
 };
 
 const ContactForm = () => {
+  const { open: zaloOpen } = useZaloQR();
   const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm<FormData>();
 
   const onSubmit = async (data: FormData) => {
@@ -749,9 +759,9 @@ const ContactForm = () => {
               <a href={`tel:${PHONE}`} className="flex items-center justify-center gap-2 h-12 rounded-xl gradient-cta text-white font-bold shadow-cta hover:scale-[1.02] transition-bounce">
                 <Phone className="w-5 h-5" /> GỌI NGAY: {PHONE_DISPLAY}
               </a>
-              <a href={ZALO_URL} className="flex items-center justify-center gap-2 h-12 rounded-xl bg-[#0068FF] text-white font-bold hover:scale-[1.02] transition-bounce">
+              <button onClick={zaloOpen} className="flex items-center justify-center gap-2 h-12 rounded-xl bg-[#0068FF] text-white font-bold hover:scale-[1.02] transition-bounce">
                 <MessageCircle className="w-5 h-5" /> NHẮN ZALO: {PHONE_DISPLAY}
-              </a>
+              </button>
               <a href={FB_URL} className="flex items-center justify-center gap-2 h-12 rounded-xl bg-[#1877F2] text-white font-bold hover:scale-[1.02] transition-bounce">
                 <Facebook className="w-5 h-5" /> FACEBOOK
               </a>
@@ -760,14 +770,7 @@ const ContactForm = () => {
               </a>
             </div>
 
-            {/* QR Zalo */}
-            <div className="mt-6 bg-white rounded-2xl p-4 flex items-center gap-4">
-              <SmartImage slotId="qr_zalo" alt="QR Zalo Ngọc Mai Land Hạ Long" className="w-28 h-28 rounded-lg object-contain bg-white flex-shrink-0" />
-              <div className="text-primary-deep">
-                <p className="font-black text-base">Quét QR — Nhắn Zalo ngay</p>
-                <p className="text-sm text-primary-deep/70 mt-1">Mở Zalo → bấm nút quét QR để kết bạn & nhận tư vấn nhanh nhất 24/7.</p>
-              </div>
-            </div>
+            <p className="text-xs text-white/60 mt-3 text-center">💡 Bấm nút <strong className="text-secondary">"NHẮN ZALO"</strong> để hiện QR — quét nhanh từ điện thoại</p>
 
             <div className="mt-6 pt-6 border-t border-white/15 space-y-2 text-sm">
               <p className="flex items-center gap-2"><Clock className="w-4 h-4 text-secondary" /> Hỗ trợ 7 ngày/tuần: 7:30 – 22:00</p>
@@ -820,7 +823,9 @@ const FAQ = () => {
 };
 
 /* ----------------------------- FINAL CTA ----------------------------- */
-const FinalCTA = () => (
+const FinalCTA = () => {
+  const { open: zaloOpen } = useZaloQR();
+  return (
   <section className="py-24 sm:py-32 gradient-cta text-white relative overflow-hidden">
     <div className="absolute inset-0 opacity-30" style={{ backgroundImage: "radial-gradient(circle at 30% 20%, hsl(var(--secondary)) 0%, transparent 40%), radial-gradient(circle at 70% 80%, hsl(var(--highlight)) 0%, transparent 40%)" }} />
     <div className="container relative text-center max-w-3xl">
@@ -840,16 +845,10 @@ const FinalCTA = () => (
         <a href={`tel:${PHONE}`} className="h-16 rounded-full bg-white text-cta font-black text-lg flex items-center justify-center gap-2 shadow-cta hover:scale-105 transition-bounce">
           <Phone className="w-6 h-6" /> GỌI NGAY — {PHONE_DISPLAY}
         </a>
-        <a href={ZALO_URL} className="h-16 rounded-full bg-[#0068FF] text-white font-black text-lg flex items-center justify-center gap-2 hover:scale-105 transition-bounce">
-          <MessageCircle className="w-6 h-6" /> NHẮN ZALO NGAY
-        </a>
-        <div className="bg-white rounded-2xl p-4 flex items-center gap-4 text-left">
-          <SmartImage slotId="qr_zalo" alt="QR Zalo" className="w-24 h-24 rounded-lg object-contain bg-white flex-shrink-0" />
-          <div className="text-primary-deep">
-            <p className="font-black text-sm">Quét QR — Liên hệ Zalo nhanh</p>
-            <p className="text-xs text-primary-deep/70 mt-1">Ngọc Mai Land Hạ Long</p>
-          </div>
-        </div>
+        <button onClick={zaloOpen} className="h-16 rounded-full bg-[#0068FF] text-white font-black text-lg flex items-center justify-center gap-2 hover:scale-105 transition-bounce">
+          <MessageCircle className="w-6 h-6" /> NHẮN ZALO — QUÉT QR NGAY
+        </button>
+        <p className="text-xs text-white/80">💡 Bấm "NHẮN ZALO" để hiện mã QR — quét bằng app Zalo trên điện thoại</p>
       </div>
 
       <div className="mt-10 max-w-lg mx-auto bg-black/30 backdrop-blur-md rounded-2xl p-6 text-left border border-white/20">
@@ -862,10 +861,13 @@ const FinalCTA = () => (
       </div>
     </div>
   </section>
-);
+  );
+};
 
 /* ----------------------------- FOOTER ----------------------------- */
-const Footer = ({ scrollTo }: { scrollTo: (id: string) => void }) => (
+const Footer = ({ scrollTo }: { scrollTo: (id: string) => void }) => {
+  const { open: zaloOpen } = useZaloQR();
+  return (
   <footer className="bg-primary-deep text-white pt-16 pb-24 md:pb-10">
     <div className="container grid md:grid-cols-3 gap-10">
       <div>
@@ -876,7 +878,7 @@ const Footer = ({ scrollTo }: { scrollTo: (id: string) => void }) => (
         <p className="text-white/70 text-sm mb-2">Đại lý phân phối chính thức</p>
         <p className="text-white/90 font-medium mb-4">Vinhomes Global Gate Hạ Long — Khu 1: Vịnh Thiên Đường</p>
         <p className="text-sm flex items-center gap-2"><Phone className="w-4 h-4 text-secondary" /> Hotline: <a href={`tel:${PHONE}`} className="font-bold hover:text-secondary">{PHONE_DISPLAY}</a></p>
-        <p className="text-sm flex items-center gap-2 mt-1"><MessageCircle className="w-4 h-4 text-secondary" /> Zalo: <a href={ZALO_URL} className="font-bold hover:text-secondary">{PHONE_DISPLAY}</a></p>
+        <p className="text-sm flex items-center gap-2 mt-1"><MessageCircle className="w-4 h-4 text-secondary" /> Zalo: <button onClick={zaloOpen} className="font-bold hover:text-secondary underline-offset-2 hover:underline">{PHONE_DISPLAY}</button></p>
       </div>
 
       <div>
@@ -894,24 +896,18 @@ const Footer = ({ scrollTo }: { scrollTo: (id: string) => void }) => (
       <div>
         <h4 className="font-bold text-secondary mb-4">Theo dõi chúng tôi</h4>
         <div className="flex gap-3 mb-4">
-          {[
-            { url: FB_URL, i: <Facebook className="w-5 h-5" />, c: "bg-[#1877F2]" },
-            { url: YT_URL, i: <Youtube className="w-5 h-5" />, c: "bg-[#FF0000]" },
-            { url: ZALO_URL, i: <MessageCircle className="w-5 h-5" />, c: "bg-[#0068FF]" },
-            { url: TT_URL, i: <span className="font-black text-sm">TT</span>, c: "bg-black" },
-          ].map((s, i) => (
-            <a key={i} href={s.url} target="_blank" rel="noopener" className={`w-11 h-11 rounded-full ${s.c} flex items-center justify-center hover:scale-110 transition-bounce`}>
-              {s.i}
-            </a>
-          ))}
+          <a href={FB_URL} target="_blank" rel="noopener" className="w-11 h-11 rounded-full bg-[#1877F2] flex items-center justify-center hover:scale-110 transition-bounce"><Facebook className="w-5 h-5" /></a>
+          <a href={YT_URL} target="_blank" rel="noopener" className="w-11 h-11 rounded-full bg-[#FF0000] flex items-center justify-center hover:scale-110 transition-bounce"><Youtube className="w-5 h-5" /></a>
+          <button onClick={zaloOpen} aria-label="Nhắn Zalo" className="w-11 h-11 rounded-full bg-[#0068FF] flex items-center justify-center hover:scale-110 transition-bounce"><MessageCircle className="w-5 h-5" /></button>
+          <a href={TT_URL} target="_blank" rel="noopener" className="w-11 h-11 rounded-full bg-black flex items-center justify-center hover:scale-110 transition-bounce"><span className="font-black text-sm">TT</span></a>
         </div>
-        <div className="bg-white rounded-xl p-3 inline-flex items-center gap-3">
+        <button onClick={zaloOpen} className="bg-white rounded-xl p-3 inline-flex items-center gap-3 hover:scale-[1.02] transition-bounce text-left">
           <SmartImage slotId="qr_zalo" alt="QR Zalo" className="w-20 h-20 rounded-md object-contain" />
           <div className="text-primary-deep text-xs">
             <p className="font-bold">Quét QR Zalo</p>
-            <p className="opacity-70">Liên hệ nhanh 24/7</p>
+            <p className="opacity-70">Bấm để xem lớn & quét</p>
           </div>
-        </div>
+        </button>
       </div>
     </div>
 
@@ -920,6 +916,7 @@ const Footer = ({ scrollTo }: { scrollTo: (id: string) => void }) => (
       <p className="opacity-80">⚠️ Thông tin trên trang chỉ mang tính tham khảo. Giá và chính sách có thể thay đổi. Liên hệ trực tiếp để cập nhật mới nhất.</p>
     </div>
   </footer>
-);
+  );
+};
 
 export default Index;
