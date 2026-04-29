@@ -2,13 +2,14 @@ import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import {
-  Phone, MessageCircle, Facebook, Youtube, Menu, X, ChevronDown, ChevronLeft, ChevronRight,
+  Phone, MessageCircle, Facebook, Youtube, Menu, X, ChevronDown,
   Trophy, Waves, TrendingUp, ShieldCheck, Rocket, Wallet, MapPin, Clock, Lock, Star, Shield, Check,
   Frown, Angry, Home as HomeIcon, AlertTriangle, HeartCrack, Hourglass, Flame, Building2, Gem,
 } from "lucide-react";
 import { SmartImage } from "@/components/SmartImage";
 import { AdminPanel } from "@/components/AdminPanel";
 import { Countdown } from "@/components/Countdown";
+import { Lightbox } from "@/components/Lightbox";
 
 const PHONE = "0962891111";
 const PHONE_DISPLAY = "0962 891 111";
@@ -356,7 +357,7 @@ const ZONES = [
 ];
 
 const Masterplan = () => {
-  const [zoom, setZoom] = useState(false);
+  const [open, setOpen] = useState(false);
   return (
     <section id="matbang" className="py-20 sm:py-28 gradient-mint">
       <div className="container">
@@ -366,8 +367,11 @@ const Masterplan = () => {
           <p className="text-muted-foreground text-base sm:text-lg">935 ha quy hoạch bài bản — mỗi m² đều là tài sản sinh lời.</p>
         </div>
 
-        <div className="relative bg-card rounded-3xl overflow-hidden shadow-card border border-border cursor-zoom-in" onClick={() => setZoom(true)}>
-          <SmartImage slotId="masterplan" alt="Mặt bằng tổng thể VHGG Hạ Long" className="w-full max-h-[600px] object-contain bg-primary-deep" />
+        <div className="relative bg-card rounded-3xl overflow-hidden shadow-card border border-border cursor-zoom-in group" onClick={() => setOpen(true)}>
+          <SmartImage slotId="masterplan" alt="Mặt bằng tổng thể VHGG Hạ Long" className="w-full max-h-[600px] object-contain bg-primary-deep transition-smooth group-hover:scale-[1.01]" />
+          <div className="absolute top-3 left-3 px-3 py-1.5 rounded-full bg-white/90 text-primary-deep text-xs font-bold backdrop-blur flex items-center gap-1">
+            🔍 Click để phóng to
+          </div>
           <div className="absolute bottom-3 right-3 px-3 py-1.5 rounded-full bg-black/60 text-white text-xs font-medium backdrop-blur">
             VHGG HẠ LONG · {PHONE_DISPLAY}
           </div>
@@ -383,11 +387,13 @@ const Masterplan = () => {
         </div>
       </div>
 
-      {zoom && (
-        <div className="fixed inset-0 z-[150] bg-black/95 flex items-center justify-center p-4 animate-fade-in" onClick={() => setZoom(false)}>
-          <button className="absolute top-4 right-4 text-white p-2"><X className="w-8 h-8" /></button>
-          <SmartImage slotId="masterplan" alt="Mặt bằng" className="max-w-full max-h-full object-contain" />
-        </div>
+      {open && (
+        <Lightbox
+          items={[{ slotId: "masterplan", title: "Mặt bằng tổng thể — Khu 1: Vịnh Thiên Đường" }]}
+          index={0}
+          onChange={() => {}}
+          onClose={() => setOpen(false)}
+        />
       )}
     </section>
   );
@@ -530,6 +536,11 @@ const UrgencyReasons = () => (
 /* ----------------------------- GALLERY ----------------------------- */
 const GALLERY_IDS = ["gallery_1", "gallery_2", "gallery_3", "gallery_4", "gallery_5", "gallery_6"];
 
+const GALLERY_ITEMS = GALLERY_IDS.map((id, i) => ({
+  slotId: id,
+  title: `VHGG Hạ Long — Ảnh dự án ${i + 1}`,
+}));
+
 const Gallery = () => {
   const [idx, setIdx] = useState<number | null>(null);
   return (
@@ -544,7 +555,7 @@ const Gallery = () => {
             <button key={id} onClick={() => setIdx(i)} className="group relative aspect-square sm:aspect-[4/3] rounded-2xl overflow-hidden shadow-card">
               <SmartImage slotId={id} alt={`Ảnh dự án ${i + 1}`} className="w-full h-full object-cover group-hover:scale-110 transition-smooth duration-500" />
               <div className="absolute inset-0 bg-primary-deep/0 group-hover:bg-primary-deep/40 transition-smooth flex items-center justify-center">
-                <span className="opacity-0 group-hover:opacity-100 transition-smooth text-white font-semibold">🔍 Xem ảnh</span>
+                <span className="opacity-0 group-hover:opacity-100 transition-smooth text-white font-semibold">🔍 Phóng to</span>
               </div>
             </button>
           ))}
@@ -552,12 +563,12 @@ const Gallery = () => {
       </div>
 
       {idx !== null && (
-        <div className="fixed inset-0 z-[150] bg-black/95 flex items-center justify-center p-4 animate-fade-in">
-          <button onClick={() => setIdx(null)} className="absolute top-4 right-4 text-white p-2 z-10"><X className="w-8 h-8" /></button>
-          <button onClick={(e) => { e.stopPropagation(); setIdx((idx - 1 + GALLERY_IDS.length) % GALLERY_IDS.length); }} className="absolute left-4 text-white p-3 bg-white/10 rounded-full hover:bg-white/20"><ChevronLeft className="w-6 h-6" /></button>
-          <SmartImage slotId={GALLERY_IDS[idx]} alt="" className="max-w-full max-h-full object-contain rounded-xl" />
-          <button onClick={(e) => { e.stopPropagation(); setIdx((idx + 1) % GALLERY_IDS.length); }} className="absolute right-4 text-white p-3 bg-white/10 rounded-full hover:bg-white/20"><ChevronRight className="w-6 h-6" /></button>
-        </div>
+        <Lightbox
+          items={GALLERY_ITEMS}
+          index={idx}
+          onChange={setIdx}
+          onClose={() => setIdx(null)}
+        />
       )}
     </section>
   );
