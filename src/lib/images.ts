@@ -18,6 +18,7 @@ import testimonial1 from "@/assets/testimonial-1.jpg";
 import testimonial2 from "@/assets/testimonial-2.jpg";
 import testimonial3 from "@/assets/testimonial-3.jpg";
 import agentAvatar from "@/assets/agent-avatar.jpg";
+import qrZalo from "@/assets/qr-zalo.jpg";
 
 export const DEFAULT_IMAGES: Record<string, string> = {
   hero_bg: heroBg,
@@ -40,6 +41,7 @@ export const DEFAULT_IMAGES: Record<string, string> = {
   testimonial_2: testimonial2,
   testimonial_3: testimonial3,
   agent_avatar: agentAvatar,
+  qr_zalo: qrZalo,
 };
 
 export const IMAGE_SLOTS: { id: string; label: string }[] = [
@@ -63,6 +65,7 @@ export const IMAGE_SLOTS: { id: string; label: string }[] = [
   { id: "testimonial_2", label: "Khách hàng 2" },
   { id: "testimonial_3", label: "Khách hàng 3" },
   { id: "agent_avatar", label: "Ảnh môi giới" },
+  { id: "qr_zalo", label: "QR Code Zalo (liên hệ nhanh)" },
 ];
 
 const STORAGE_PREFIX = "vhgg_images_";
