@@ -28,7 +28,8 @@ const NAV = [
   { id: "lienhe", label: "Liên hệ" },
 ];
 
-const Index = () => {
+const IndexInner = () => {
+  const { open: zaloOpen } = useZaloQR();
   const [adminOpen, setAdminOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [mobileNav, setMobileNav] = useState(false);
