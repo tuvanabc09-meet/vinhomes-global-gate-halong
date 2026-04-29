@@ -443,6 +443,7 @@ const TOWNHOUSES = [
 
 const Products = () => {
   const [tab, setTab] = useState<"villa" | "townhouse">("villa");
+  const { open: zaloOpen } = useZaloQR();
   return (
     <section id="sanpham" className="py-20 sm:py-28 bg-background">
       <div className="container">
@@ -489,9 +490,9 @@ const Products = () => {
                 </div>
                 <h3 className="font-bold text-lg text-primary-deep">{v.t}</h3>
                 <p className="text-muted-foreground text-sm mb-4">{v.d}</p>
-                <a href={ZALO_URL} className="inline-flex items-center gap-2 text-sm font-semibold text-cta hover:text-cta-deep">
+                <button onClick={zaloOpen} className="inline-flex items-center gap-2 text-sm font-semibold text-cta hover:text-cta-deep">
                   <MessageCircle className="w-4 h-4" /> Nhận báo giá
-                </a>
+                </button>
               </div>
             ))}
           </div>
@@ -644,6 +645,7 @@ type FormData = {
 };
 
 const ContactForm = () => {
+  const { open: zaloOpen } = useZaloQR();
   const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm<FormData>();
 
   const onSubmit = async (data: FormData) => {
@@ -757,9 +759,9 @@ const ContactForm = () => {
               <a href={`tel:${PHONE}`} className="flex items-center justify-center gap-2 h-12 rounded-xl gradient-cta text-white font-bold shadow-cta hover:scale-[1.02] transition-bounce">
                 <Phone className="w-5 h-5" /> GỌI NGAY: {PHONE_DISPLAY}
               </a>
-              <a href={ZALO_URL} className="flex items-center justify-center gap-2 h-12 rounded-xl bg-[#0068FF] text-white font-bold hover:scale-[1.02] transition-bounce">
+              <button onClick={zaloOpen} className="flex items-center justify-center gap-2 h-12 rounded-xl bg-[#0068FF] text-white font-bold hover:scale-[1.02] transition-bounce">
                 <MessageCircle className="w-5 h-5" /> NHẮN ZALO: {PHONE_DISPLAY}
-              </a>
+              </button>
               <a href={FB_URL} className="flex items-center justify-center gap-2 h-12 rounded-xl bg-[#1877F2] text-white font-bold hover:scale-[1.02] transition-bounce">
                 <Facebook className="w-5 h-5" /> FACEBOOK
               </a>
@@ -768,14 +770,7 @@ const ContactForm = () => {
               </a>
             </div>
 
-            {/* QR Zalo */}
-            <div className="mt-6 bg-white rounded-2xl p-4 flex items-center gap-4">
-              <SmartImage slotId="qr_zalo" alt="QR Zalo Ngọc Mai Land Hạ Long" className="w-28 h-28 rounded-lg object-contain bg-white flex-shrink-0" />
-              <div className="text-primary-deep">
-                <p className="font-black text-base">Quét QR — Nhắn Zalo ngay</p>
-                <p className="text-sm text-primary-deep/70 mt-1">Mở Zalo → bấm nút quét QR để kết bạn & nhận tư vấn nhanh nhất 24/7.</p>
-              </div>
-            </div>
+            <p className="text-xs text-white/60 mt-3 text-center">💡 Bấm nút <strong className="text-secondary">"NHẮN ZALO"</strong> để hiện QR — quét nhanh từ điện thoại</p>
 
             <div className="mt-6 pt-6 border-t border-white/15 space-y-2 text-sm">
               <p className="flex items-center gap-2"><Clock className="w-4 h-4 text-secondary" /> Hỗ trợ 7 ngày/tuần: 7:30 – 22:00</p>
