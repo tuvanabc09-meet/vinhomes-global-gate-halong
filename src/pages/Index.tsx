@@ -155,13 +155,29 @@ const Hero = ({ scrollTo }: { scrollTo: (id: string) => void }) => (
     <div className="absolute inset-0 gradient-hero" />
     <div className="absolute inset-0 bg-gradient-to-b from-primary-deep/40 via-transparent to-primary-deep/70" />
     <div className="container relative z-10 text-center text-white pt-24 pb-32">
-      <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/20 mb-6 animate-fade-in-up">
+      {/* Marquee chữ chạy thu hút */}
+      <div className="absolute top-20 left-0 right-0 overflow-hidden border-y border-secondary/40 bg-primary-deep/40 backdrop-blur-sm py-2 mb-6">
+        <div className="marquee-track text-secondary font-bold text-sm sm:text-base whitespace-nowrap">
+          {Array.from({ length: 2 }).map((_, k) => (
+            <div key={k} className="flex items-center gap-8 pr-8">
+              {["🔥 ƯU ĐÃI VÀNG: Chiết khấu lên đến 18% + Tặng gói nội thất 500 triệu","💎 Chỉ còn 12 căn cuối khu Vịnh Thiên Đường","🌊 Sở hữu lâu dài — View vịnh Hạ Long trực diện","⚡ Lãi suất 0% trong 24 tháng — Ân hạn gốc 36 tháng","🏆 Vinhomes — Chủ đầu tư uy tín #1 Việt Nam"].map((t, i) => (
+                <span key={i} className="flex items-center gap-8">
+                  <span>{t}</span>
+                  <span className="text-white/50">✦</span>
+                </span>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/20 mt-12 mb-6 animate-fade-in-up glow-pulse">
         <Waves className="w-4 h-4 text-secondary" />
         <span className="text-xs sm:text-sm font-medium">Khu 1: Vịnh Thiên Đường — Paradise Bay</span>
       </div>
-      <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black leading-tight mb-6 animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
+      <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black leading-tight mb-6 animate-fade-in-up text-emboss" style={{ animationDelay: "0.1s" }}>
         Bạn Vẫn Đang Trả Tiền Thuê Nhà<br />
-        <span className="text-gradient-sunset">Trong Khi Người Khác Đã Sinh Lời</span><br />
+        <span className="text-shine inline-block">Trong Khi Người Khác Đã Sinh Lời</span><br />
         Từ Mảnh Đất Cạnh Vịnh Hạ Long?
       </h1>
       <p className="text-base sm:text-xl text-secondary font-medium max-w-3xl mx-auto mb-8 animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
