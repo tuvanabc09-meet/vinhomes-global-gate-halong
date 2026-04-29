@@ -14,9 +14,10 @@ import { Lightbox } from "@/components/Lightbox";
 const PHONE = "0962891111";
 const PHONE_DISPLAY = "0962 891 111";
 const ZALO_URL = `https://zalo.me/${PHONE}`;
-const FB_URL = "https://facebook.com";
-const YT_URL = "https://youtube.com";
-const TT_URL = "https://tiktok.com";
+// TODO: Admin sẽ cập nhật link Facebook / YouTube qua mail quản trị sau
+const FB_URL = "#";
+const YT_URL = "#";
+const TT_URL = "#";
 
 const NAV = [
   { id: "tongquan", label: "Tổng quan" },
@@ -754,9 +755,18 @@ const ContactForm = () => {
               <a href={FB_URL} className="flex items-center justify-center gap-2 h-12 rounded-xl bg-[#1877F2] text-white font-bold hover:scale-[1.02] transition-bounce">
                 <Facebook className="w-5 h-5" /> FACEBOOK
               </a>
-              <a href={YT_URL} className="flex items-center justify-center gap-2 h-12 rounded-xl bg-[#FF0000] text-white font-bold hover:scale-[1.02] transition-bounce">
+              <a href={YT_URL} target="_blank" rel="noopener" className="flex items-center justify-center gap-2 h-12 rounded-xl bg-[#FF0000] text-white font-bold hover:scale-[1.02] transition-bounce">
                 <Youtube className="w-5 h-5" /> YOUTUBE
               </a>
+            </div>
+
+            {/* QR Zalo */}
+            <div className="mt-6 bg-white rounded-2xl p-4 flex items-center gap-4">
+              <SmartImage slotId="qr_zalo" alt="QR Zalo Ngọc Mai Land Hạ Long" className="w-28 h-28 rounded-lg object-contain bg-white flex-shrink-0" />
+              <div className="text-primary-deep">
+                <p className="font-black text-base">Quét QR — Nhắn Zalo ngay</p>
+                <p className="text-sm text-primary-deep/70 mt-1">Mở Zalo → bấm nút quét QR để kết bạn & nhận tư vấn nhanh nhất 24/7.</p>
+              </div>
             </div>
 
             <div className="mt-6 pt-6 border-t border-white/15 space-y-2 text-sm">
