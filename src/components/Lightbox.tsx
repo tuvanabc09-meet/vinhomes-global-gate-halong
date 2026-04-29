@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, X, ZoomIn, ZoomOut, RotateCcw, Maximize2 } from "lucide-react";
 import { getImage } from "@/lib/images";
 
@@ -176,6 +176,65 @@ export const Lightbox = ({ items, index, onClose, onChange }: LightboxProps) => 
         <div className="hidden sm:block text-xs text-white/50 ml-3">
           ← / → chuyển ảnh · +/− zoom · 0 reset · Esc đóng
         </div>
+      </div>
+
+      {/* Thumbnail strip */}
+      {items.length > 1 && (
+        <ThumbStrip items={items} index={index} onSelect={onChange} />
+      )}
+    </div>
+  );
+};
+
+interface ThumbStripProps {
+  items: LightboxItem[];
+  index: number;
+  onSelect: (i: number) => void;
+}
+
+const ThumbStrip = ({ items, index, onSelect }: ThumbStripProps) => {
+  const scrollerRef = useRef<HTMLDivElement>(null);
+  const activeRef = useRef<HTMLButtonElement>(null);
+
+  useLayoutEffect(() => {
+    const el = activeRef.current;
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+  }, [index]);
+
+  return (
+    <div className="bg-black/70 border-t border-white/10">
+      <div
+        ref={scrollerRef}
+        className="flex gap-2 overflow-x-auto px-3 py-2 sm:px-4 sm:py-3 scrollbar-thin"
+        style={{ scrollbarWidth: "thin" }}
+      >
+        {items.map((it, i) => {
+          const active = i === index;
+          return (
+            <button
+              key={it.slotId}
+              ref={active ? activeRef : undefined}
+              onClick={() => onSelect(i)}
+              className={`relative flex-shrink-0 rounded-lg overflow-hidden transition-smooth focus:outline-none ${
+                active
+                  ? "ring-2 ring-secondary scale-105 shadow-glow"
+                  : "ring-1 ring-white/15 opacity-60 hover:opacity-100 hover:ring-white/40"
+              }`}
+              aria-label={`Xem ${it.title}`}
+              title={it.title}
+            >
+              <img
+                src={getImage(it.slotId)}
+                alt={it.title}
+                className="h-14 w-20 sm:h-16 sm:w-24 object-cover block"
+                draggable={false}
+              />
+              <span className="absolute bottom-0 left-0 right-0 bg-black/60 text-white text-[10px] px-1 py-0.5 truncate">
+                {i + 1}. {it.title}
+              </span>
+            </button>
+          );
+        })}
       </div>
     </div>
   );
