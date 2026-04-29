@@ -865,7 +865,9 @@ const FinalCTA = () => {
 };
 
 /* ----------------------------- FOOTER ----------------------------- */
-const Footer = ({ scrollTo }: { scrollTo: (id: string) => void }) => (
+const Footer = ({ scrollTo }: { scrollTo: (id: string) => void }) => {
+  const { open: zaloOpen } = useZaloQR();
+  return (
   <footer className="bg-primary-deep text-white pt-16 pb-24 md:pb-10">
     <div className="container grid md:grid-cols-3 gap-10">
       <div>
@@ -876,7 +878,7 @@ const Footer = ({ scrollTo }: { scrollTo: (id: string) => void }) => (
         <p className="text-white/70 text-sm mb-2">Đại lý phân phối chính thức</p>
         <p className="text-white/90 font-medium mb-4">Vinhomes Global Gate Hạ Long — Khu 1: Vịnh Thiên Đường</p>
         <p className="text-sm flex items-center gap-2"><Phone className="w-4 h-4 text-secondary" /> Hotline: <a href={`tel:${PHONE}`} className="font-bold hover:text-secondary">{PHONE_DISPLAY}</a></p>
-        <p className="text-sm flex items-center gap-2 mt-1"><MessageCircle className="w-4 h-4 text-secondary" /> Zalo: <a href={ZALO_URL} className="font-bold hover:text-secondary">{PHONE_DISPLAY}</a></p>
+        <p className="text-sm flex items-center gap-2 mt-1"><MessageCircle className="w-4 h-4 text-secondary" /> Zalo: <button onClick={zaloOpen} className="font-bold hover:text-secondary underline-offset-2 hover:underline">{PHONE_DISPLAY}</button></p>
       </div>
 
       <div>
@@ -894,24 +896,18 @@ const Footer = ({ scrollTo }: { scrollTo: (id: string) => void }) => (
       <div>
         <h4 className="font-bold text-secondary mb-4">Theo dõi chúng tôi</h4>
         <div className="flex gap-3 mb-4">
-          {[
-            { url: FB_URL, i: <Facebook className="w-5 h-5" />, c: "bg-[#1877F2]" },
-            { url: YT_URL, i: <Youtube className="w-5 h-5" />, c: "bg-[#FF0000]" },
-            { url: ZALO_URL, i: <MessageCircle className="w-5 h-5" />, c: "bg-[#0068FF]" },
-            { url: TT_URL, i: <span className="font-black text-sm">TT</span>, c: "bg-black" },
-          ].map((s, i) => (
-            <a key={i} href={s.url} target="_blank" rel="noopener" className={`w-11 h-11 rounded-full ${s.c} flex items-center justify-center hover:scale-110 transition-bounce`}>
-              {s.i}
-            </a>
-          ))}
+          <a href={FB_URL} target="_blank" rel="noopener" className="w-11 h-11 rounded-full bg-[#1877F2] flex items-center justify-center hover:scale-110 transition-bounce"><Facebook className="w-5 h-5" /></a>
+          <a href={YT_URL} target="_blank" rel="noopener" className="w-11 h-11 rounded-full bg-[#FF0000] flex items-center justify-center hover:scale-110 transition-bounce"><Youtube className="w-5 h-5" /></a>
+          <button onClick={zaloOpen} aria-label="Nhắn Zalo" className="w-11 h-11 rounded-full bg-[#0068FF] flex items-center justify-center hover:scale-110 transition-bounce"><MessageCircle className="w-5 h-5" /></button>
+          <a href={TT_URL} target="_blank" rel="noopener" className="w-11 h-11 rounded-full bg-black flex items-center justify-center hover:scale-110 transition-bounce"><span className="font-black text-sm">TT</span></a>
         </div>
-        <div className="bg-white rounded-xl p-3 inline-flex items-center gap-3">
+        <button onClick={zaloOpen} className="bg-white rounded-xl p-3 inline-flex items-center gap-3 hover:scale-[1.02] transition-bounce text-left">
           <SmartImage slotId="qr_zalo" alt="QR Zalo" className="w-20 h-20 rounded-md object-contain" />
           <div className="text-primary-deep text-xs">
             <p className="font-bold">Quét QR Zalo</p>
-            <p className="opacity-70">Liên hệ nhanh 24/7</p>
+            <p className="opacity-70">Bấm để xem lớn & quét</p>
           </div>
-        </div>
+        </button>
       </div>
     </div>
 
@@ -920,6 +916,7 @@ const Footer = ({ scrollTo }: { scrollTo: (id: string) => void }) => (
       <p className="opacity-80">⚠️ Thông tin trên trang chỉ mang tính tham khảo. Giá và chính sách có thể thay đổi. Liên hệ trực tiếp để cập nhật mới nhất.</p>
     </div>
   </footer>
-);
+  );
+};
 
 export default Index;
