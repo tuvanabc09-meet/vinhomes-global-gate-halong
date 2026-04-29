@@ -58,6 +58,7 @@ const Index = () => {
   };
 
   return (
+    <ZaloQRProvider>
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       {/* HEADER */}
       <header className={`fixed top-0 left-0 right-0 z-50 transition-smooth ${scrolled ? "bg-primary-deep/95 backdrop-blur-md shadow-card" : "bg-gradient-to-b from-black/40 to-transparent"}`}>
