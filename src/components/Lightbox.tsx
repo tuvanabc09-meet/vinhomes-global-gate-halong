@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
-import { ChevronLeft, ChevronRight, X, ZoomIn, ZoomOut, RotateCcw, Maximize2 } from "lucide-react";
+import { ChevronLeft, ChevronRight, X, ZoomIn, ZoomOut, RotateCcw, Maximize2, Download } from "lucide-react";
 import { getImage } from "@/lib/images";
 
 export interface LightboxItem {
@@ -171,6 +171,45 @@ export const Lightbox = ({ items, index, onClose, onChange }: LightboxProps) => 
           </button>
           <button onClick={() => setScale(MAX_SCALE)} className="p-2 rounded-full hover:bg-white/15 transition-smooth" aria-label="Phóng tối đa">
             <Maximize2 className="w-5 h-5" />
+          </button>
+          <span className="w-px h-5 bg-white/20 mx-1" />
+          <button
+            onClick={async () => {
+              try {
+                const url = getImage(item.slotId);
+                const safeTitle = item.title.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-zA-Z0-9-_]+/g, "-").replace(/^-+|-+$/g, "").toLowerCase() || item.slotId;
+                let blobUrl = url;
+                let revoke = false;
+                if (!url.startsWith("data:")) {
+                  const res = await fetch(url);
+                  const blob = await res.blob();
+                  blobUrl = URL.createObjectURL(blob);
+                  revoke = true;
+                }
+                const ext = (() => {
+                  if (url.startsWith("data:")) {
+                    const m = url.match(/^data:image\/(\w+)/);
+                    return m ? m[1] : "jpg";
+                  }
+                  const m = url.split("?")[0].match(/\.(\w{3,4})$/);
+                  return m ? m[1] : "jpg";
+                })();
+                const a = document.createElement("a");
+                a.href = blobUrl;
+                a.download = `${safeTitle}.${ext}`;
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                if (revoke) setTimeout(() => URL.revokeObjectURL(blobUrl), 1000);
+              } catch (err) {
+                console.error("Download failed", err);
+              }
+            }}
+            className="p-2 rounded-full hover:bg-white/15 transition-smooth"
+            aria-label="Tải ảnh hiện tại"
+            title="Tải ảnh hiện tại"
+          >
+            <Download className="w-5 h-5" />
           </button>
         </div>
         <div className="hidden sm:block text-xs text-white/50 ml-3">
