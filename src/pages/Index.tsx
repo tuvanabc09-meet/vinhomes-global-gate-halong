@@ -28,6 +28,12 @@ const NAV = [
   { id: "lienhe", label: "Liên hệ" },
 ];
 
+const Index = () => (
+  <ZaloQRProvider>
+    <IndexInner />
+  </ZaloQRProvider>
+);
+
 const IndexInner = () => {
   const { open: zaloOpen } = useZaloQR();
   const [adminOpen, setAdminOpen] = useState(false);
