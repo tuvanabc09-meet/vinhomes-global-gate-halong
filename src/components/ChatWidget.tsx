@@ -2,7 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { MessageCircle, Send, X, Loader2 } from "lucide-react";
+import { Send, X, Loader2 } from "lucide-react";
+import { SmartImage } from "@/components/SmartImage";
 
 interface Msg { role: "user" | "assistant"; content: string }
 
@@ -61,10 +62,21 @@ export default function ChatWidget() {
       {!open && (
         <button
           onClick={() => setOpen(true)}
-          className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-gradient-to-br from-primary to-secondary text-primary-foreground shadow-2xl flex items-center justify-center hover:scale-110 transition-transform animate-pulse"
+          className="fixed bottom-6 right-6 z-50 group flex items-center gap-3 hover:scale-105 transition-transform"
           aria-label="Mở chat tư vấn"
         >
-          <MessageCircle className="w-6 h-6" />
+          <span className="hidden sm:block bg-background border rounded-2xl rounded-br-sm shadow-lg px-3 py-2 text-sm font-medium animate-fade-in">
+            Chào bạn! Cần tư vấn? 💬
+          </span>
+          <span className="relative">
+            <span className="absolute inset-0 rounded-full bg-primary/40 animate-ping" />
+            <SmartImage
+              slotId="agent_avatar"
+              alt="Trợ lý tư vấn"
+              className="relative w-16 h-16 rounded-full object-cover border-4 border-background shadow-2xl"
+            />
+            <span className="absolute bottom-0 right-0 w-4 h-4 bg-green-500 border-2 border-background rounded-full" />
+          </span>
         </button>
       )}
 
