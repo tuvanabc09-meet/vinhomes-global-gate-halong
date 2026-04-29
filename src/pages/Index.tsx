@@ -148,6 +148,7 @@ const Index = () => {
 
       <AdminPanel open={adminOpen} onClose={() => setAdminOpen(false)} />
     </div>
+    </ZaloQRProvider>
   );
 };
 
