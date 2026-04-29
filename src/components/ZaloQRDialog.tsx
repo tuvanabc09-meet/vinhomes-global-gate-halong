@@ -12,8 +12,14 @@ export const useZaloQR = () => useContext(ZaloQRContext);
 
 export const ZaloQRProvider = ({ children }: { children: ReactNode }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const handleOpen = () => {
+    // Mở chat Zalo trực tiếp ở tab/app mới
+    window.open(ZALO_URL, "_blank", "noopener,noreferrer");
+    // Đồng thời hiện popup QR để khách quét nếu muốn
+    setIsOpen(true);
+  };
   return (
-    <ZaloQRContext.Provider value={{ open: () => setIsOpen(true) }}>
+    <ZaloQRContext.Provider value={{ open: handleOpen }}>
       {children}
       {isOpen && (
         <div
@@ -37,9 +43,9 @@ export const ZaloQRProvider = ({ children }: { children: ReactNode }) => {
                 <span className="w-2 h-2 bg-[#0068FF] rounded-full animate-pulse" />
                 LIÊN HỆ ZALO
               </div>
-              <h3 className="text-xl font-black text-foreground mb-1">Quét mã QR để chat ngay</h3>
+              <h3 className="text-xl font-black text-foreground mb-1">Đang mở chat Zalo...</h3>
               <p className="text-sm text-muted-foreground mb-4">
-                Mở Zalo trên điện thoại → bấm biểu tượng <strong>QR</strong> → quét mã bên dưới
+                Nếu trình duyệt chặn cửa sổ — bấm <strong>"Mở Zalo trực tiếp"</strong> bên dưới, hoặc <strong>quét QR</strong> bằng app Zalo trên điện thoại.
               </p>
 
               <div className="bg-white p-4 rounded-2xl border-4 border-[#0068FF]/20 mx-auto inline-block">
