@@ -8,6 +8,8 @@ import {
 } from "lucide-react";
 import { SmartImage } from "@/components/SmartImage";
 import { AdminPanel } from "@/components/AdminPanel";
+import { AdminLoginButton } from "@/components/AdminLoginButton";
+import { IntroVideo } from "@/components/IntroVideo";
 import { Countdown } from "@/components/Countdown";
 import { Lightbox } from "@/components/Lightbox";
 import { ZaloQRProvider, useZaloQR } from "@/components/ZaloQRDialog";
@@ -81,6 +83,7 @@ const IndexInner = () => {
             ))}
           </nav>
           <div className="flex items-center gap-2">
+            <AdminLoginButton onOpenAdmin={() => setAdminOpen(true)} />
             <a href={`tel:${PHONE}`} className="hidden sm:inline-flex items-center gap-2 pulse-cta px-5 py-2.5 rounded-full gradient-cta text-cta-foreground font-bold text-sm shadow-cta hover:scale-105 transition-bounce">
               <Phone className="w-4 h-4" /> GỌI NGAY
             </a>
@@ -409,6 +412,9 @@ const Masterplan = () => {
             </div>
           ))}
         </div>
+
+
+        <IntroVideo />
       </div>
 
       {open && (
