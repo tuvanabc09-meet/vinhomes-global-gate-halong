@@ -13,6 +13,7 @@ interface Props {
 export const AdminLoginButton = ({ onOpenAdmin }: Props) => {
   const { user, isAdmin, loading } = useAdmin();
   const [busy, setBusy] = useState(false);
+  const navigate = useNavigate();
 
   if (loading) return null;
 
@@ -53,7 +54,6 @@ export const AdminLoginButton = ({ onOpenAdmin }: Props) => {
   }
 
   if (isAdmin) {
-    const navigate = useNavigate();
     return (
       <div className="hidden sm:flex items-center gap-1">
         <button
