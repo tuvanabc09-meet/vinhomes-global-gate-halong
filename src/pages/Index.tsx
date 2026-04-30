@@ -758,7 +758,7 @@ const ContactForm = () => {
               <a href={`tel:${PHONE}`} className="flex items-center justify-center gap-2 h-12 rounded-xl gradient-cta text-white font-bold shadow-cta hover:scale-[1.02] transition-bounce">
                 <Phone className="w-5 h-5" /> GỌI NGAY: {PHONE_DISPLAY}
               </a>
-              <button onClick={zaloOpen} className="flex items-center justify-center gap-2 h-12 rounded-xl bg-[#0068FF] text-white font-bold hover:scale-[1.02] transition-bounce">
+              <button onClick={zaloOpen} className="w-full flex items-center justify-center gap-2 h-12 rounded-xl bg-[#0068FF] text-white font-bold hover:scale-[1.02] transition-bounce">
                 <MessageCircle className="w-5 h-5" /> NHẮN ZALO: {PHONE_DISPLAY}
               </button>
               <a href={FB_URL} className="flex items-center justify-center gap-2 h-12 rounded-xl bg-[#1877F2] text-white font-bold hover:scale-[1.02] transition-bounce">
