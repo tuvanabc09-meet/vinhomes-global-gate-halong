@@ -55,7 +55,8 @@ const SlotRow = ({ id, label, isAdmin }: { id: string; label: string; isAdmin: b
   const isCloud = !!getMedia(id);
 
   useEffect(() => {
-    return subscribeMedia(() => setPreview(resolve()));
+    const unsub = subscribeMedia(() => setPreview(resolve()));
+    return () => { unsub(); };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
