@@ -71,7 +71,7 @@ const IndexInner = () => {
         <div className="container flex items-center justify-between h-16 sm:h-20">
           <button onClick={handleLogoClick} className="flex items-center gap-2 select-none">
             <div className="w-10 h-10 rounded-xl gradient-sunset flex items-center justify-center font-black text-white shadow-premium">V</div>
-            <span className="font-black text-lg sm:text-xl text-secondary tracking-tight">VHGG HẠ LONG</span>
+            <span className="font-black text-lg sm:text-xl text-secondary tracking-tight">VINHOMES GLOBAL GATE HẠ LONG</span>
           </button>
           <nav className="hidden lg:flex items-center gap-1">
             {NAV.map((n) => (
@@ -185,9 +185,8 @@ const Hero = ({ scrollTo }: { scrollTo: (id: string) => void }) => (
         <span className="text-xs sm:text-sm font-medium">Khu 1: Vịnh Thiên Đường — Paradise Bay</span>
       </div>
       <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black leading-tight mb-6 animate-fade-in-up text-emboss" style={{ animationDelay: "0.1s" }}>
-        Bạn Vẫn Đang Trả Tiền Thuê Nhà<br />
-        <span className="text-shine inline-block">Trong Khi Người Khác Đã Sinh Lời</span><br />
-        Từ Mảnh Đất Cạnh Vịnh Hạ Long?
+        Vinhomes Global Gate Hạ Long<br />
+        <span className="text-secondary">Trong Từng Góc Nhìn</span>
       </h1>
       <p className="text-base sm:text-xl text-secondary font-medium max-w-3xl mx-auto mb-8 animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
         VINHOMES GLOBAL GATE HẠ LONG — 935 Ha đô thị thượng lưu bên vịnh biển kỳ quan thế giới.<br />
@@ -873,7 +872,7 @@ const Footer = ({ scrollTo }: { scrollTo: (id: string) => void }) => {
       <div>
         <div className="flex items-center gap-2 mb-4">
           <div className="w-10 h-10 rounded-xl gradient-sunset flex items-center justify-center font-black text-white">V</div>
-          <span className="font-black text-xl text-secondary">VHGG HẠ LONG</span>
+          <span className="font-black text-xl text-secondary">Vinhomes Global Gate<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HẠ LONG</span>
         </div>
         <p className="text-white/70 text-sm mb-2">Đại lý phân phối chính thức</p>
         <p className="text-white/90 font-medium mb-4">Vinhomes Global Gate Hạ Long — Khu 1: Vịnh Thiên Đường</p>
