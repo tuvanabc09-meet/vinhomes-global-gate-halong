@@ -338,7 +338,7 @@ const Amenities = () => (
     <div className="container">
       <div className="text-center max-w-3xl mx-auto mb-14">
         <span className="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary-deep text-sm font-bold mb-4">TIỆN ÍCH ĐẲNG CẤP</span>
-        <h2 className="text-3xl sm:text-5xl font-black text-primary-deep mb-4">20 Tiện Ích Điểm Nhấn —<br /><span className="text-gradient-sea">Cả Thế Giới Trong Một Đô Thị</span></h2>
+        <h2 className="text-3xl sm:text-5xl font-black text-primary-deep mb-4">20 Tiện ích Điểm Nhấn&nbsp;<br /><span className="text-gradient-sea">Cả Thế Giới Trong Một Đô Thị</span></h2>
         <p className="text-muted-foreground text-base sm:text-lg">Không nơi nào ở Việt Nam bạn có thể sở hữu ngôi nhà vừa sát vịnh kỳ quan UNESCO, vừa trong lòng đô thị 5 sao như thế này.</p>
       </div>
 
@@ -744,12 +744,12 @@ const ContactForm = () => {
           <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full gradient-sunset opacity-30 blur-3xl" />
           <div className="relative">
             <span className="inline-block px-4 py-1 rounded-full bg-secondary text-secondary-foreground text-sm font-bold mb-4">LIÊN HỆ TRỰC TIẾP</span>
-            <h3 className="text-2xl sm:text-3xl font-black mb-6">Liên Hệ Trực Tiếp Môi Giới</h3>
+            <h3 className="text-2xl sm:text-3xl font-black mb-6">Liên Hệ Trực Tiếp&nbsp;</h3>
 
             <div className="flex items-center gap-4 mb-6">
               <SmartImage slotId="agent_avatar" alt="Chuyên viên VHGG" className="w-20 h-20 rounded-2xl object-cover ring-4 ring-secondary/40" />
               <div>
-                <h4 className="font-bold text-secondary text-lg">Chuyên Viên Tư Vấn VHGG</h4>
+                <h4 className="font-bold text-secondary text-lg">Chuyên Viên Tư Vấn Vinhomes Hạ Long Xanh</h4>
                 <p className="text-white/80 text-sm">Tận tâm — Chuyên nghiệp — Hiệu quả</p>
               </div>
             </div>
