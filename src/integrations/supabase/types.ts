@@ -124,6 +124,42 @@ export type Database = {
         }
         Relationships: []
       }
+      site_media: {
+        Row: {
+          created_at: string
+          id: string
+          kind: string
+          slot_id: string
+          title: string | null
+          updated_at: string
+          updated_by: string | null
+          url: string
+          video_type: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          kind: string
+          slot_id: string
+          title?: string | null
+          updated_at?: string
+          updated_by?: string | null
+          url: string
+          video_type?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          kind?: string
+          slot_id?: string
+          title?: string | null
+          updated_at?: string
+          updated_by?: string | null
+          url?: string
+          video_type?: string | null
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string
