@@ -654,12 +654,26 @@ const ContactForm = () => {
   const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm<FormData>();
 
   const onSubmit = async (data: FormData) => {
-    await new Promise((r) => setTimeout(r, 600));
-    const stored = JSON.parse(localStorage.getItem("vhgg_leads") ?? "[]");
-    stored.push({ ...data, ts: new Date().toISOString() });
-    localStorage.setItem("vhgg_leads", JSON.stringify(stored));
-    toast.success("✅ Đăng ký thành công!", { description: "Chuyên viên sẽ liên hệ bạn trong 15 phút." });
-    reset();
+    try {
+      const { supabase } = await import("@/integrations/supabase/client");
+      const { error } = await supabase.functions.invoke("submit-lead", {
+        body: {
+          full_name: data.name,
+          phone: data.phone,
+          email: data.email,
+          product_interest: data.product,
+          budget: data.budget,
+          note: data.note,
+        },
+      });
+      if (error) throw error;
+      toast.success("✅ Đăng ký thành công!", { description: "Chuyên viên sẽ liên hệ bạn trong 15 phút." });
+      reset();
+    } catch (e) {
+      toast.error("Gửi thất bại, vui lòng thử lại", {
+        description: e instanceof Error ? e.message : "Lỗi không xác định",
+      });
+    }
   };
 
   return (
