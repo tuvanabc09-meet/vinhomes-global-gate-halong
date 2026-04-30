@@ -13,7 +13,8 @@ export const IntroVideo = () => {
 
   useEffect(() => {
     loadAllMedia().then(() => force((n) => n + 1));
-    return subscribeMedia(() => force((n) => n + 1));
+    const unsub = subscribeMedia(() => force((n) => n + 1));
+    return () => { unsub(); };
   }, []);
 
   const media = getMedia(SLOT);
