@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { LogIn, LogOut, Settings, Loader2 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { LogIn, LogOut, Settings, Loader2, Users } from "lucide-react";
 import { useAdmin } from "@/hooks/useAdmin";
 import { lovable } from "@/integrations/lovable";
 import { supabase } from "@/integrations/supabase/client";
@@ -12,6 +13,7 @@ interface Props {
 export const AdminLoginButton = ({ onOpenAdmin }: Props) => {
   const { user, isAdmin, loading } = useAdmin();
   const [busy, setBusy] = useState(false);
+  const navigate = useNavigate();
 
   if (loading) return null;
 
@@ -55,10 +57,16 @@ export const AdminLoginButton = ({ onOpenAdmin }: Props) => {
     return (
       <div className="hidden sm:flex items-center gap-1">
         <button
+          onClick={() => navigate("/admin/leads")}
+          className="inline-flex items-center gap-1.5 px-3 h-9 rounded-full bg-secondary text-secondary-foreground hover:opacity-90 text-xs font-bold transition-smooth"
+        >
+          <Users className="w-3.5 h-3.5" /> Khách đăng ký
+        </button>
+        <button
           onClick={onOpenAdmin}
           className="inline-flex items-center gap-1.5 px-3 h-9 rounded-full bg-cta text-cta-foreground hover:bg-cta-deep text-xs font-bold transition-smooth"
         >
-          <Settings className="w-3.5 h-3.5" /> Chỉnh sửa
+          <Settings className="w-3.5 h-3.5" /> Ảnh & Video
         </button>
         <button
           onClick={signOut}
