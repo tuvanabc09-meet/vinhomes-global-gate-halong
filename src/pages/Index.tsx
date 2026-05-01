@@ -391,7 +391,7 @@ const Masterplan = () => {
         <div className="text-center max-w-3xl mx-auto mb-12">
           <span className="inline-block px-4 py-1 rounded-full bg-primary text-primary-foreground text-sm font-bold mb-4">MẶT BẰNG TỔNG THỂ</span>
           <h2 className="text-3xl sm:text-5xl font-black text-primary-deep mb-4">Khu 1: Vịnh Thiên Đường</h2>
-          <p className="text-muted-foreground text-base sm:text-lg">935 ha quy hoạch bài bản — mỗi m² đều là tài sản sinh lời.</p>
+          <p className="text-muted-foreground text-base sm:text-lg">6206 ha quy hoạch bài bản — mỗi m² đều là tài sản sinh lời.</p>
         </div>
 
         <div className="relative bg-card rounded-3xl overflow-hidden shadow-card border border-border cursor-zoom-in group" onClick={() => setOpen(true)}>
