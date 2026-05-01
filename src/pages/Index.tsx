@@ -307,7 +307,7 @@ const Solution = () => (
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
         {[
-          { v: "935", u: "Ha", l: "Tổng diện tích" },
+          { v: "6206", u: "Ha", l: "Tổng diện tích" },
           { v: "20", u: "+", l: "Tiện ích quốc tế" },
           { v: "14", u: "tr", l: "Du khách / năm" },
           { v: "#1", u: "", l: "CĐT uy tín VN" },
