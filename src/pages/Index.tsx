@@ -454,7 +454,7 @@ const Products = () => {
       <div className="container">
         <div className="text-center max-w-3xl mx-auto mb-12">
           <span className="inline-block px-4 py-1 rounded-full bg-secondary text-secondary-foreground text-sm font-bold mb-4">LOẠI HÌNH SẢN PHẨM</span>
-          <h2 className="text-3xl sm:text-5xl font-black text-primary-deep mb-4">Lựa Chọn Phù Hợp —<br /><span className="text-gradient-sunset">Đầu Tư Thông Minh</span></h2>
+          <h2 className="text-3xl sm:text-5xl font-black text-primary-deep mb-4">Lựa Chọn Phù Hợp<br />Đầu Tư Thông Minh</h2>
         </div>
 
         <div className="flex justify-center gap-2 mb-10">
