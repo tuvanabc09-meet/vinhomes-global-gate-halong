@@ -192,7 +192,7 @@ const Hero = ({ scrollTo }: { scrollTo: (id: string) => void }) => (
         <span className="text-secondary">Trong Từng Góc Nhìn</span>
       </h1>
       <p className="text-base sm:text-xl text-secondary font-medium max-w-3xl mx-auto mb-8 animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
-        VINHOMES GLOBAL GATE HẠ LONG — 935 Ha đô thị thượng lưu bên vịnh biển kỳ quan thế giới.<br />
+        VINHOMES GLOBAL GATE HẠ LONG — 6206 Ha đô thị thượng lưu bên vịnh biển kỳ quan thế giới.<br />
         <span className="text-white/90 text-base">Cơ hội sở hữu BĐS tăng giá từng ngày — trước khi quá muộn.</span>
       </p>
 
@@ -307,7 +307,7 @@ const Solution = () => (
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
         {[
-          { v: "935", u: "Ha", l: "Tổng diện tích" },
+          { v: "6206", u: "Ha", l: "Tổng diện tích" },
           { v: "20", u: "+", l: "Tiện ích quốc tế" },
           { v: "14", u: "tr", l: "Du khách / năm" },
           { v: "#1", u: "", l: "CĐT uy tín VN" },
@@ -391,7 +391,7 @@ const Masterplan = () => {
         <div className="text-center max-w-3xl mx-auto mb-12">
           <span className="inline-block px-4 py-1 rounded-full bg-primary text-primary-foreground text-sm font-bold mb-4">MẶT BẰNG TỔNG THỂ</span>
           <h2 className="text-3xl sm:text-5xl font-black text-primary-deep mb-4">Khu 1: Vịnh Thiên Đường</h2>
-          <p className="text-muted-foreground text-base sm:text-lg">935 ha quy hoạch bài bản — mỗi m² đều là tài sản sinh lời.</p>
+          <p className="text-muted-foreground text-base sm:text-lg">6206 ha quy hoạch bài bản — mỗi m² đều là tài sản sinh lời.</p>
         </div>
 
         <div className="relative bg-card rounded-3xl overflow-hidden shadow-card border border-border cursor-zoom-in group" onClick={() => setOpen(true)}>
