@@ -10,6 +10,8 @@ import { SmartImage } from "@/components/SmartImage";
 import { AdminPanel } from "@/components/AdminPanel";
 import { AdminLoginButton } from "@/components/AdminLoginButton";
 import { IntroVideo } from "@/components/IntroVideo";
+import { DocumentsSection } from "@/components/DocumentsSection";
+import { Logo } from "@/components/Logo";
 import { Countdown } from "@/components/Countdown";
 import { Lightbox } from "@/components/Lightbox";
 import { ZaloQRProvider, useZaloQR } from "@/components/ZaloQRDialog";
@@ -27,6 +29,7 @@ const NAV = [
   { id: "tienich", label: "Tiện ích" },
   { id: "matbang", label: "Mặt bằng" },
   { id: "sanpham", label: "Sản phẩm" },
+  { id: "tailieu", label: "Tài liệu" },
   { id: "lienhe", label: "Liên hệ" },
 ];
 
@@ -72,7 +75,7 @@ const IndexInner = () => {
       <header className={`fixed top-0 left-0 right-0 z-50 transition-smooth ${scrolled ? "bg-primary-deep/95 backdrop-blur-md shadow-card" : "bg-gradient-to-b from-black/40 to-transparent"}`}>
         <div className="container flex items-center justify-between h-16 sm:h-20">
           <button onClick={handleLogoClick} className="flex items-center gap-2 select-none">
-            <div className="w-10 h-10 gradient-sunset flex items-center justify-center font-black text-white shadow-premium rounded-full">​</div>
+            <Logo className="w-10 h-10" />
             <span className="font-black text-lg sm:text-xl text-secondary tracking-tight">VINHOMES GLOBAL GATE HẠ LONG</span>
           </button>
           <nav className="hidden lg:flex items-center gap-1">
