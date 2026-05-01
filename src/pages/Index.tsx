@@ -130,6 +130,7 @@ const IndexInner = () => {
         <UrgencyReasons />
         <Gallery />
         <Testimonials />
+        <DocumentsSection />
         <ContactForm />
         <FAQ />
         <FinalCTA />
