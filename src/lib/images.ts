@@ -45,6 +45,7 @@ export const DEFAULT_IMAGES: Record<string, string> = {
 };
 
 export const IMAGE_SLOTS: { id: string; label: string }[] = [
+  { id: "logo", label: "Logo trên Header (vuông, nền trong suốt)" },
   { id: "hero_bg", label: "Ảnh nền Hero (1920×1080)" },
   { id: "masterplan", label: "Mặt bằng tổng thể" },
   { id: "amenity_1", label: "Tiện ích 1 — Sân Golf" },
