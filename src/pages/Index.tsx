@@ -72,7 +72,7 @@ const IndexInner = () => {
       <header className={`fixed top-0 left-0 right-0 z-50 transition-smooth ${scrolled ? "bg-primary-deep/95 backdrop-blur-md shadow-card" : "bg-gradient-to-b from-black/40 to-transparent"}`}>
         <div className="container flex items-center justify-between h-16 sm:h-20">
           <button onClick={handleLogoClick} className="flex items-center gap-2 select-none">
-            <div className="w-10 h-10 rounded-xl gradient-sunset flex items-center justify-center font-black text-white shadow-premium">V</div>
+            <div className="w-10 h-10 gradient-sunset flex items-center justify-center font-black text-white shadow-premium rounded-full">​</div>
             <span className="font-black text-lg sm:text-xl text-secondary tracking-tight">VINHOMES GLOBAL GATE HẠ LONG</span>
           </button>
           <nav className="hidden lg:flex items-center gap-1">
@@ -891,7 +891,7 @@ const Footer = ({ scrollTo }: { scrollTo: (id: string) => void }) => {
     <div className="container grid md:grid-cols-3 gap-10">
       <div>
         <div className="flex items-center gap-2 mb-4">
-          <div className="w-10 h-10 rounded-xl gradient-sunset flex items-center justify-center font-black text-white">V</div>
+          <div className="w-10 h-10 gradient-sunset flex items-center justify-center font-black text-white rounded-full">​</div>
           <span className="font-black text-xl text-secondary">Vinhomes Global Gate<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HẠ LONG</span>
         </div>
         <p className="text-white/70 text-sm mb-2">Đại lý phân phối chính thức</p>
