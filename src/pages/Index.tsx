@@ -192,7 +192,7 @@ const Hero = ({ scrollTo }: { scrollTo: (id: string) => void }) => (
         <span className="text-secondary">Trong Từng Góc Nhìn</span>
       </h1>
       <p className="text-base sm:text-xl text-secondary font-medium max-w-3xl mx-auto mb-8 animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
-        VINHOMES GLOBAL GATE HẠ LONG — 935 Ha đô thị thượng lưu bên vịnh biển kỳ quan thế giới.<br />
+        VINHOMES GLOBAL GATE HẠ LONG — 6206 Ha đô thị thượng lưu bên vịnh biển kỳ quan thế giới.<br />
         <span className="text-white/90 text-base">Cơ hội sở hữu BĐS tăng giá từng ngày — trước khi quá muộn.</span>
       </p>
 
