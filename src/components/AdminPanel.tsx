@@ -2,7 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import { IMAGE_SLOTS, getImage, setImage, resetImage } from "@/lib/images";
 import { getMedia, loadAllMedia, upsertMediaImage, deleteMedia, uploadFileToBucket, subscribeMedia } from "@/lib/siteMedia";
 import { useAdmin } from "@/hooks/useAdmin";
-import { X, Upload, RotateCcw, Cloud, Loader2 } from "lucide-react";
+import { lovable } from "@/integrations/lovable";
+import { supabase } from "@/integrations/supabase/client";
+import { X, Upload, RotateCcw, Cloud, Loader2, LogIn, LogOut, PlayCircle, FileText } from "lucide-react";
 import { toast } from "sonner";
 
 interface AdminPanelProps {
