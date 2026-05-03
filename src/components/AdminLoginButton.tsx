@@ -42,13 +42,11 @@ export const AdminLoginButton = ({ onOpenAdmin }: Props) => {
   if (!user) {
     return (
       <button
-        onClick={signIn}
-        disabled={busy}
-        title="Đăng nhập quản trị"
-        className="hidden sm:inline-flex items-center gap-1.5 px-3 h-9 rounded-full bg-white/10 text-white/80 hover:bg-white/20 text-xs font-medium transition-smooth disabled:opacity-60"
+        onClick={onOpenAdmin}
+        title="Mở bảng điều khiển quản trị"
+        className="hidden sm:inline-flex items-center gap-1.5 px-3 h-9 rounded-full bg-secondary text-secondary-foreground hover:opacity-90 text-xs font-bold transition-smooth"
       >
-        {busy ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <LogIn className="w-3.5 h-3.5" />}
-        Quản trị
+        <Settings className="w-3.5 h-3.5" /> Quản trị
       </button>
     );
   }
