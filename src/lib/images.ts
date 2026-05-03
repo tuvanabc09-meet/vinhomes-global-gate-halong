@@ -19,8 +19,10 @@ import testimonial2 from "@/assets/testimonial-2.jpg";
 import testimonial3 from "@/assets/testimonial-3.jpg";
 import agentAvatar from "@/assets/agent-avatar.jpg";
 import qrZalo from "@/assets/qr-zalo.jpg";
+import logo from "@/assets/logo.png";
 
 export const DEFAULT_IMAGES: Record<string, string> = {
+  logo: logo,
   hero_bg: heroBg,
   masterplan: masterplan,
   amenity_1: amenityGolf,
