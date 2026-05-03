@@ -176,7 +176,7 @@ const Hero = ({ scrollTo }: { scrollTo: (id: string) => void }) => (
         <div className="marquee-track text-secondary font-bold text-sm sm:text-base whitespace-nowrap">
           {Array.from({ length: 2 }).map((_, k) => (
             <div key={k} className="flex items-center gap-8 pr-8">
-              {["🔥 ƯU ĐÃI VÀNG: Chiết khấu lên đến 18% + Tặng gói nội thất 500 triệu","💎 Chỉ còn 12 căn cuối khu Vịnh Thiên Đường","🌊 Sở hữu lâu dài — View vịnh Hạ Long trực diện","⚡ Lãi suất 0% trong 24 tháng — Ân hạn gốc 36 tháng","🏆 Vinhomes — Chủ đầu tư uy tín #1 Việt Nam"].map((t, i) => (
+              {["⚡ Lãi suất 0% trong 18 tháng ","💎 Chỉ còn 12 căn cuối khu Vịnh Thiên Đường","🌊 Sở hữu lâu dài — View vịnh Hạ Long trực diện","⚡ Lãi suất 0% trong 24 tháng — Ân hạn gốc 36 tháng","🏆 Vinhomes — Chủ đầu tư uy tín #1 Việt Nam"].map((t, i) => (
                 <span key={i} className="flex items-center gap-8">
                   <span>{t}</span>
                   <span className="text-white/50">✦</span>
