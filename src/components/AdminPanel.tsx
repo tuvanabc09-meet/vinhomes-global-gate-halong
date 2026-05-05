@@ -30,7 +30,13 @@ export const AdminPanel = ({ open, onClose }: AdminPanelProps) => {
       if (result.error) {
         toast.error("Không đăng nhập được");
         setBusy(false);
+        return;
       }
+      if (result.redirected) return;
+      // Tokens received in-place — refresh admin state immediately
+      await refreshAdmin();
+      toast.success("Đã đăng nhập — đã cập nhật quyền admin");
+      setBusy(false);
     } catch (e) {
       toast.error(e instanceof Error ? e.message : "Lỗi");
       setBusy(false);
