@@ -6,6 +6,8 @@ import { lovable } from "@/integrations/lovable";
 import { supabase } from "@/integrations/supabase/client";
 import { X, Upload, RotateCcw, Cloud, Loader2, LogIn, LogOut, PlayCircle, FileText } from "lucide-react";
 import { toast } from "sonner";
+import { VideoEditor } from "./IntroVideo";
+import { DocumentEditor } from "./DocumentsSection";
 
 interface AdminPanelProps {
   open: boolean;
@@ -15,6 +17,8 @@ interface AdminPanelProps {
 export const AdminPanel = ({ open, onClose }: AdminPanelProps) => {
   const { user, isAdmin, loading } = useAdmin();
   const [busy, setBusy] = useState(false);
+  const [showVideoEditor, setShowVideoEditor] = useState(false);
+  const [showDocEditor, setShowDocEditor] = useState(false);
 
   useEffect(() => {
     if (open) loadAllMedia();
