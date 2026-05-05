@@ -59,6 +59,15 @@ export const AdminPanel = ({ open, onClose }: AdminPanelProps) => {
     }, 150);
   };
 
+  const openVideoEditor = () => {
+    if (!isAdmin) { toast.error("Cần đăng nhập admin"); return; }
+    setShowVideoEditor(true);
+  };
+  const openDocEditor = () => {
+    if (!isAdmin) { toast.error("Cần đăng nhập admin"); return; }
+    setShowDocEditor(true);
+  };
+
   return (
     <div className="fixed inset-0 z-[200] bg-black/90 backdrop-blur-sm overflow-y-auto p-4 sm:p-8 animate-fade-in">
       <div className="max-w-5xl mx-auto bg-[#1a1a1a] text-white rounded-2xl shadow-2xl border border-white/10">
