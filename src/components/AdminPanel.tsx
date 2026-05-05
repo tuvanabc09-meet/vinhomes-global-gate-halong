@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { IMAGE_SLOTS, getImage, setImage, resetImage } from "@/lib/images";
 import { getMedia, loadAllMedia, upsertMediaImage, deleteMedia, uploadFileToBucket, subscribeMedia } from "@/lib/siteMedia";
-import { useAdmin } from "@/hooks/useAdmin";
+import { useAdmin, refreshAdmin } from "@/hooks/useAdmin";
 import { lovable } from "@/integrations/lovable";
 import { supabase } from "@/integrations/supabase/client";
 import { X, Upload, RotateCcw, Cloud, Loader2, LogIn, LogOut, PlayCircle, FileText } from "lucide-react";
