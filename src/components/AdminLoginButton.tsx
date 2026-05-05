@@ -26,8 +26,11 @@ export const AdminLoginButton = ({ onOpenAdmin }: Props) => {
       if (result.error) {
         toast.error("Không đăng nhập được");
         setBusy(false);
+        return;
       }
-      // if redirected, browser navigates away
+      if (result.redirected) return;
+      await refreshAdmin();
+      setBusy(false);
     } catch (e) {
       toast.error(e instanceof Error ? e.message : "Lỗi");
       setBusy(false);
