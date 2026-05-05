@@ -6,6 +6,8 @@ import { lovable } from "@/integrations/lovable";
 import { supabase } from "@/integrations/supabase/client";
 import { X, Upload, RotateCcw, Cloud, Loader2, LogIn, LogOut, PlayCircle, FileText } from "lucide-react";
 import { toast } from "sonner";
+import { VideoEditor } from "./IntroVideo";
+import { DocumentEditor } from "./DocumentsSection";
 
 interface AdminPanelProps {
   open: boolean;
@@ -15,6 +17,8 @@ interface AdminPanelProps {
 export const AdminPanel = ({ open, onClose }: AdminPanelProps) => {
   const { user, isAdmin, loading } = useAdmin();
   const [busy, setBusy] = useState(false);
+  const [showVideoEditor, setShowVideoEditor] = useState(false);
+  const [showDocEditor, setShowDocEditor] = useState(false);
 
   useEffect(() => {
     if (open) loadAllMedia();
@@ -53,6 +57,15 @@ export const AdminPanel = ({ open, onClose }: AdminPanelProps) => {
     setTimeout(() => {
       document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
     }, 150);
+  };
+
+  const openVideoEditor = () => {
+    if (!isAdmin) { toast.error("Cần đăng nhập admin"); return; }
+    setShowVideoEditor(true);
+  };
+  const openDocEditor = () => {
+    if (!isAdmin) { toast.error("Cần đăng nhập admin"); return; }
+    setShowDocEditor(true);
   };
 
   return (
@@ -96,32 +109,61 @@ export const AdminPanel = ({ open, onClose }: AdminPanelProps) => {
           </div>
         </div>
 
-        {/* Quick admin shortcuts */}
+        {/* Quick admin shortcuts: open editors directly */}
         <div className="p-6 border-b border-white/10 grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <button
-            onClick={() => goTo("tongquan")}
-            className="flex items-center gap-3 p-4 rounded-xl bg-gradient-to-r from-primary/20 to-primary/5 border border-primary/30 hover:border-primary transition-smooth text-left"
-          >
-            <div className="w-10 h-10 rounded-lg bg-primary/30 flex items-center justify-center flex-shrink-0">
-              <PlayCircle className="w-5 h-5 text-secondary" />
+          <div className="rounded-xl bg-gradient-to-r from-primary/20 to-primary/5 border border-primary/30 p-4">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-10 h-10 rounded-lg bg-primary/30 flex items-center justify-center flex-shrink-0">
+                <PlayCircle className="w-5 h-5 text-secondary" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="font-bold text-sm">🎬 Video giới thiệu</div>
+                <div className="text-xs text-white/60">Dán link YouTube hoặc upload MP4 (≤100MB).</div>
+              </div>
             </div>
-            <div className="flex-1 min-w-0">
-              <div className="font-bold text-sm">🎬 Quản lý Video giới thiệu</div>
-              <div className="text-xs text-white/60">{isAdmin ? "Đến khung video → bấm 'Quản lý video' để dán link YouTube hoặc upload MP4" : "Cần đăng nhập admin"}</div>
+            <div className="flex gap-2">
+              <button
+                onClick={openVideoEditor}
+                disabled={!isAdmin}
+                className="flex-1 inline-flex items-center justify-center gap-1.5 h-9 rounded-md bg-cta text-cta-foreground text-xs font-bold hover:bg-cta-deep disabled:opacity-50"
+              >
+                <Upload className="w-3.5 h-3.5" /> Upload / Đổi video
+              </button>
+              <button
+                onClick={() => goTo("tongquan")}
+                className="px-3 h-9 rounded-md bg-white/10 hover:bg-white/20 text-xs"
+              >
+                Xem
+              </button>
             </div>
-          </button>
-          <button
-            onClick={() => goTo("tailieu")}
-            className="flex items-center gap-3 p-4 rounded-xl bg-gradient-to-r from-secondary/20 to-secondary/5 border border-secondary/30 hover:border-secondary transition-smooth text-left"
-          >
-            <div className="w-10 h-10 rounded-lg bg-secondary/30 flex items-center justify-center flex-shrink-0">
-              <FileText className="w-5 h-5 text-secondary" />
+          </div>
+
+          <div className="rounded-xl bg-gradient-to-r from-secondary/20 to-secondary/5 border border-secondary/30 p-4">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-10 h-10 rounded-lg bg-secondary/30 flex items-center justify-center flex-shrink-0">
+                <FileText className="w-5 h-5 text-secondary" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="font-bold text-sm">📚 Tài liệu & Brochure</div>
+                <div className="text-xs text-white/60">Upload PDF / Word / Excel / ảnh (≤50MB).</div>
+              </div>
             </div>
-            <div className="flex-1 min-w-0">
-              <div className="font-bold text-sm">📚 Quản lý Tài liệu & Brochure</div>
-              <div className="text-xs text-white/60">{isAdmin ? "Đến mục Tài liệu → bấm 'Thêm tài liệu' để upload PDF/Word/Excel/ảnh" : "Cần đăng nhập admin"}</div>
+            <div className="flex gap-2">
+              <button
+                onClick={openDocEditor}
+                disabled={!isAdmin}
+                className="flex-1 inline-flex items-center justify-center gap-1.5 h-9 rounded-md bg-cta text-cta-foreground text-xs font-bold hover:bg-cta-deep disabled:opacity-50"
+              >
+                <Upload className="w-3.5 h-3.5" /> Thêm tài liệu mới
+              </button>
+              <button
+                onClick={() => goTo("tailieu")}
+                className="px-3 h-9 rounded-md bg-white/10 hover:bg-white/20 text-xs"
+              >
+                Xem
+              </button>
             </div>
-          </button>
+          </div>
         </div>
 
         <div className="px-6 pt-6 pb-2">
@@ -139,6 +181,15 @@ export const AdminPanel = ({ open, onClose }: AdminPanelProps) => {
           </button>
         </div>
       </div>
+
+      {showVideoEditor && <VideoEditor onClose={() => setShowVideoEditor(false)} />}
+      {showDocEditor && (
+        <DocumentEditor
+          doc={null}
+          onClose={() => setShowDocEditor(false)}
+          onSaved={() => setShowDocEditor(false)}
+        />
+      )}
     </div>
   );
 };

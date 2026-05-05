@@ -206,7 +206,7 @@ export const DocumentsSection = () => {
   );
 };
 
-const DocumentEditor = ({
+export const DocumentEditor = ({
   doc,
   onClose,
   onSaved,
