@@ -73,7 +73,7 @@ export const IntroVideo = () => {
   );
 };
 
-const VideoEditor = ({ onClose }: { onClose: () => void }) => {
+export const VideoEditor = ({ onClose }: { onClose: () => void }) => {
   const [tab, setTab] = useState<"youtube" | "upload">("youtube");
   const [ytUrl, setYtUrl] = useState("");
   const [title, setTitle] = useState("");
