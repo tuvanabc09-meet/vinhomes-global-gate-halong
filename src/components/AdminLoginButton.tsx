@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LogIn, LogOut, Settings, Loader2, Users } from "lucide-react";
-import { useAdmin } from "@/hooks/useAdmin";
+import { useAdmin, refreshAdmin } from "@/hooks/useAdmin";
 import { lovable } from "@/integrations/lovable";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
@@ -26,8 +26,11 @@ export const AdminLoginButton = ({ onOpenAdmin }: Props) => {
       if (result.error) {
         toast.error("Không đăng nhập được");
         setBusy(false);
+        return;
       }
-      // if redirected, browser navigates away
+      if (result.redirected) return;
+      await refreshAdmin();
+      setBusy(false);
     } catch (e) {
       toast.error(e instanceof Error ? e.message : "Lỗi");
       setBusy(false);

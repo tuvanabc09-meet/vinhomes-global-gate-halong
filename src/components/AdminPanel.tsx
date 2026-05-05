@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { IMAGE_SLOTS, getImage, setImage, resetImage } from "@/lib/images";
 import { getMedia, loadAllMedia, upsertMediaImage, deleteMedia, uploadFileToBucket, subscribeMedia } from "@/lib/siteMedia";
-import { useAdmin } from "@/hooks/useAdmin";
+import { useAdmin, refreshAdmin } from "@/hooks/useAdmin";
 import { lovable } from "@/integrations/lovable";
 import { supabase } from "@/integrations/supabase/client";
 import { X, Upload, RotateCcw, Cloud, Loader2, LogIn, LogOut, PlayCircle, FileText } from "lucide-react";
@@ -30,7 +30,13 @@ export const AdminPanel = ({ open, onClose }: AdminPanelProps) => {
       if (result.error) {
         toast.error("Không đăng nhập được");
         setBusy(false);
+        return;
       }
+      if (result.redirected) return;
+      // Tokens received in-place — refresh admin state immediately
+      await refreshAdmin();
+      toast.success("Đã đăng nhập — đã cập nhật quyền admin");
+      setBusy(false);
     } catch (e) {
       toast.error(e instanceof Error ? e.message : "Lỗi");
       setBusy(false);
